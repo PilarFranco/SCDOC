@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-09-2023 a las 22:47:14
+-- Tiempo de generación: 07-09-2023 a las 23:48:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -29,12 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `archivo` (
   `id` int(11) NOT NULL,
-  `categoria` varchar(150) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `fecha` date NOT NULL,
-  `archivo` longblob NOT NULL,
-  `tipo` varchar(150) NOT NULL,
-  `id_empresa` int(10) NOT NULL
+  `title` varchar(100) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `id_empresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -45,12 +43,10 @@ CREATE TABLE `archivo` (
 
 CREATE TABLE `arcperso` (
   `id` int(11) NOT NULL,
-  `categoria` varchar(150) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `fecha` date NOT NULL,
-  `archivo` longblob NOT NULL,
-  `tipo` varchar(150) NOT NULL,
-  `id_empresa` int(10) NOT NULL
+  `title` varchar(100) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `id_empresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -169,12 +165,10 @@ CREATE TABLE `foda` (
 
 CREATE TABLE `general` (
   `id` int(11) NOT NULL,
-  `categoria` varchar(150) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `fecha` date NOT NULL,
-  `archivo` longblob NOT NULL,
-  `tipo` varchar(150) NOT NULL,
-  `id_empresa` int(10) NOT NULL
+  `title` varchar(100) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `url` varchar(200) NOT NULL,
+  `id_empresa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -456,7 +450,7 @@ INSERT INTO `user` (`id`, `nombre`, `correo`, `telefono`, `password`, `fecha`, `
 --
 ALTER TABLE `archivo`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `fk_Empresa` (`id_empresa`) USING BTREE;
+  ADD KEY `fk_archivo` (`id_empresa`);
 
 --
 -- Indices de la tabla `arcperso`
@@ -470,7 +464,7 @@ ALTER TABLE `arcperso`
 --
 ALTER TABLE `comunicacion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_empresa` (`id_empresa`) USING BTREE;
+  ADD KEY `fk_comunicacion` (`id_empresa`);
 
 --
 -- Indices de la tabla `desempeño`
@@ -498,6 +492,13 @@ ALTER TABLE `empresas`
 ALTER TABLE `foda`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_Empresa` (`id_empresa`);
+
+--
+-- Indices de la tabla `general`
+--
+ALTER TABLE `general`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_general` (`id_empresa`);
 
 --
 -- Indices de la tabla `infraestructura`
@@ -587,6 +588,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `archivo`
+--
+ALTER TABLE `archivo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `arcperso`
 --
 ALTER TABLE `arcperso`
@@ -620,6 +627,12 @@ ALTER TABLE `empresas`
 -- AUTO_INCREMENT de la tabla `foda`
 --
 ALTER TABLE `foda`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `general`
+--
+ALTER TABLE `general`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -699,6 +712,12 @@ ALTER TABLE `arcperso`
   ADD CONSTRAINT `fk_arcperso` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`);
 
 --
+-- Filtros para la tabla `comunicacion`
+--
+ALTER TABLE `comunicacion`
+  ADD CONSTRAINT `fk_comunicacion` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`);
+
+--
 -- Filtros para la tabla `desempeño`
 --
 ALTER TABLE `desempeño`
@@ -709,6 +728,12 @@ ALTER TABLE `desempeño`
 --
 ALTER TABLE `foda`
   ADD CONSTRAINT `fk_foda` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`);
+
+--
+-- Filtros para la tabla `general`
+--
+ALTER TABLE `general`
+  ADD CONSTRAINT `fk_general` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`);
 
 --
 -- Filtros para la tabla `infraestructura`
