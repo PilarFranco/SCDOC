@@ -19,13 +19,16 @@ textarea{
 
 }
   .forma{
-    border: 1px solid  #8fd0d6;/*anchura, estilo y color borde*/
+    margin-left: 20px;
+    border: 2px solid #0e828c; /*anchura, estilo y color borde*/
     padding: 10px; /*espacio alrededor texto*/
-    background-color: #0e828c; /*color botón*/
-    color:  #ffffff;; /*color texto*/
+    background-color: #8fd0d6; /*color botón*/
+    color:  #0e828c;; /*color texto*/
+    text-decoration: none; /*decoración texto*/
+    text-transform: uppercase; /*capitalización texto*/
     font-family: 'Helvetica', bold; /*tipografía texto*/
-    border-radius: 20px; /*bordes redondos*/
-    }
+    border-radius: 50px; /*bordes redondos*/
+    } 
   h3{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;/*tipografía texto*/
     text-align: center;

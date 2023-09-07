@@ -119,7 +119,7 @@ if ($validar == null || $validar = '') {
                   </tbody>
                   <?php
 
-                  include("db.php");
+                  include("../../includes/_db.php");
 
                   $id_empresa = $_SESSION['id_empresa'];
 
@@ -128,13 +128,14 @@ if ($validar == null || $validar = '') {
                     $result_tasks = mysqli_query($conexion, $query);
                   } else {
   
-                    $query = "SELECT * FROM riesgos WHERE id_empresa = '$id_empresa'";
+                    $query = "SELECT r.id, r.fecha, r.tipo, r.irespon, r.idesc, r.iorig, r.i_i_e, r.icausa, r.ocuAR, r.conseAR, r.valAR, r.nivAR, r.resAR, r.ocuAO, r.conseAO, r.valAO, r.nivAO, r.controlTRA, r.estraTRA, r.accionesSEG, r.fechaSEG, r.evidSEG, r.freSEG, r.resSEG, r.cumVER, r.fechaVER, r.efecVER, r.obseVER, r.respVER, emp.emp_nombre from riesgos r
+                    inner JOIN empresas emp on r.id_empresa= emp.id_empresa WHERE r.id_empresa = '$id_empresa'";
                     $result_tasks = mysqli_query($conexion, $query);
                   }
 
                   while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                     <tr>
-                      <th><?php echo $row['id_empresa'] ?></th>
+                      <th><?php echo $row['emp_nombre'] ?></th>
                       <th><?php echo $row['fecha'] ?></th>
                       <th><?php echo $row['tipo'] ?></th>
                       <th><?php echo $row['irespon'] ?></th>

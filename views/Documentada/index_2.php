@@ -65,7 +65,7 @@ if ($validar == null || $validar = '') {
                         <td colspan="8">REGISTROS</td>
                       </tr>
                       <tr>
-                      <td rowspan="1">Empresa</td>
+                      <td rowspan="1">Empresa</td> 
                         <td rowspan="2">Nombre del formato</td>
                         <td rowspan="2">No. Revisión (formato)</td>
                         <td rowspan="2">Fecha de revisión</td>
@@ -82,7 +82,7 @@ if ($validar == null || $validar = '') {
 
 
                     <?php
-                     include("db.php");
+                     include("../../includes/_db.php");
 
                      $id_empresa = $_SESSION['id_empresa'];
 
@@ -91,7 +91,8 @@ if ($validar == null || $validar = '') {
                       $result_tasks = mysqli_query($conexion, $query);
                     } else {
     
-                      $query = "SELECT * FROM documentada WHERE id_empresa = '$id_empresa'";
+                      $query = "SELECT do.id, do.n, do.r, do.f, do.pu, do.e, do.p, do.pe, do.d, emp.emp_nombre from documentada do 
+                      inner JOIN empresas emp on do.id_empresa= emp.id_empresa WHERE do.id_empresa = '$id_empresa'";
                       $result_tasks = mysqli_query($conexion, $query);
                     }
 
@@ -99,7 +100,7 @@ if ($validar == null || $validar = '') {
 
                     while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                       <tr>
-                        <th><?php  echo $row['id_empresa']?></th>
+                        <th><?php  echo $row['emp_nombre']?></th>
                         <th><?php echo $row['n'] ?></th>
                         <th><?php echo $row['r'] ?></th>
                         <th><?php echo $row['f'] ?></th>

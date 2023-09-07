@@ -1,5 +1,6 @@
 <?php
-$conexion= mysqli_connect("localhost", "root", "", "r_user");
+include '_db.php';
+
 
 if(isset($_POST['registrar'])){
 
@@ -14,9 +15,6 @@ if(isset($_POST['registrar'])){
     $empresa = trim($_POST['empresa']);
     
     
-
-
-
     $consulta= "INSERT INTO user (nombre, correo, telefono, password, rol, id_empresa)
     VALUES ('$nombre', '$correo','$telefono','$password', '$rol', $empresa )";
 

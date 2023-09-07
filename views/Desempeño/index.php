@@ -108,7 +108,17 @@ if ($validar == null || $validar = '') {
             </tr>
   
             <tr>
+            <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
               <td>Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
               <td>Proceso</td>
               <td>Objetivo</td>
               <td>Responsable</td>
@@ -136,15 +146,16 @@ if ($validar == null || $validar = '') {
                        
           
 <?php
-          include('db.php');
+          include('../../includes/_db.php');
           
           $id_empresa = $_SESSION['id_empresa'];
 
           if ( $id_empresa == 1) { //admin
-            $query = "SELECT * FROM desempeño";
+            $query = "SELECT de.id, de.p, de.o, de.r, de.i, de.m, de.f, de.en, de.fe, de.ma, de.ab, de.may, de.ju, de.jul, de.ag, de.se, de.oc, de.no, de.di, emp.emp_nombre from desempeño de 
+            inner JOIN empresas emp on de.id_empresa= emp.id_empresa";
             $result_tasks = mysqli_query($conexion, $query);
           } else {
-
+ 
             $query = "SELECT * FROM desempeño WHERE id_empresa = '$id_empresa'";
             $result_tasks = mysqli_query($conexion, $query);
           }
@@ -153,7 +164,17 @@ if ($validar == null || $validar = '') {
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <tr>
-            <th><?php  echo $row['id_empresa']?></th>
+          <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
             <th><?php  echo $row['p']?></th>
             <th><?php  echo $row['o']?></th>
             <th><?php  echo $row['r']?></th>

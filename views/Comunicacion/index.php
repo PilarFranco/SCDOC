@@ -92,10 +92,20 @@ if ($validar == null || $validar = '') {
   <p class="concepto"><b>RESULTADO QUE SE ESPERA:</b> Meta esperada o lo que se busca obtener.</p>
 
   <thead>
-        
+         
 
 <tr>
-<td rowspan="3">Empresa</td>
+                  <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                  <td rowspan="3">Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
 <td rowspan="3">Tipo de Comunicación</td>
 <td rowspan="3">Mensaje</td>
 <td rowspan="3">Emisor ¿Quién lo debe comunicar?</td>
@@ -121,13 +131,15 @@ if ($validar == null || $validar = '') {
 
     <?php
     
-    include('db.php');
+    include('../../includes/_db.php');
 
     $id_empresa = $_SESSION['id_empresa'];
 
     if ( $id_empresa == 1) { //admin
-      $query = "SELECT * FROM comunicacion";
+      $query = "SELECT co.id, co.tipo, co.me, co.em, co.re, co.cuando, co.co, co.ind, co.ele, co.mai, co.im, co.res, emp.emp_nombre from comunicacion co 
+      inner JOIN empresas emp on co.id_empresa= emp.id_empresa";
       $result_tasks = mysqli_query($conexion, $query);
+
     } else {
 
       $query = "SELECT * FROM comunicacion WHERE id_empresa = '$id_empresa'";
@@ -136,7 +148,17 @@ if ($validar == null || $validar = '') {
 
       while($row = mysqli_fetch_assoc($result_tasks)) { ?>
         <tr>
-          <th><?php echo $row['id_empresa'] ?></th>
+                  <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
           <th><?php  echo $row['tipo']?></th>
           <th><?php  echo $row['me']?></th>
           <th><?php  echo $row['em']?></th>

@@ -1,11 +1,15 @@
 <?php 
+$con = new mysqli('localhost','root','','r_user');
+if ($con->connect_errno) {
+    die('fail');
+}
 $id=$_GET['id'];
-include '../config/bd.php';
-$conexion=conexion();
-$query=eliminar($conexion,$id);
+include ('../upload.php');
+
+$query=eliminar($con,$id);
 if($query){
- header('location:../index.php?eliminar=success');
+ header('location:../user.php');
 }else{
-    header('location:../index.php?eliminar=error');
+    header('location:../user.php');
 }
 ?>

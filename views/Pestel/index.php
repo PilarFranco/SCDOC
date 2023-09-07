@@ -80,7 +80,17 @@ if ($validar == null || $validar = '') {
                                   las licencias y certificaciones</p>
                       <h1></h1>
                          <tr>
-                         <td rowspan="2">Empresa</td>
+                         <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+            <td rowspan="2">Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                                 <td>Factor Político </td>
                                 <td>Factor económico</td>
                                 <td>Factro Social</td>
@@ -100,24 +110,33 @@ if ($validar == null || $validar = '') {
                           </thead>
                      <tbody>
                      <h1> </h1> 
-                       <?php
-
-                       
-                include('db.php');
+                       <?php                       
+                include('../../includes/_db.php');
                 $id_empresa = $_SESSION['id_empresa'];
 
                 if ( $id_empresa == 1) { //admin
-                  $query = "SELECT * FROM pestel";
+                  $query = "SELECT pe.id_pestel, pe.p, pe.e, pe.s, pe.t, pe.ec, pe.l, emp.emp_nombre from pestel pe
+                  inner JOIN empresas emp on pe.id_empresa= emp.id_empresa";
                   $result_tasks = mysqli_query($conexion, $query);
                 } else {
-     
+      
                   $query = "SELECT * FROM pestel WHERE id_empresa = '$id_empresa'";
                   $result_tasks = mysqli_query($conexion, $query);
                 }
                   
                        while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                        <tr>
-                       <th><?php  echo $row['id_empresa']?></th>
+                       <?php
+          include('../../includes/_db.php');
+          $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                          <th><?php  echo $row['p']?></th>
                          <th><?php  echo $row['e']?></th>
                          <th><?php  echo $row['s']?></th>

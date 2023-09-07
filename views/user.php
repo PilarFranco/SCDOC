@@ -134,7 +134,7 @@ if ($validar == null || $validar = '') {
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="Partes_Interesadas/index.php">Partes intersadas</a>
                   </nav>
                 </div>
-                <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Comunicacion/index.php">
+                <a class="nav-link fw-bold" style="color:#FFFFFF" href="Comunicacion/index.php">
                   <div class="sb-nav-link-icon" style="color:#FFFFFF"></div>
                   Comunicación
                 </a>
@@ -157,7 +157,7 @@ if ($validar == null || $validar = '') {
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="Tortuga/index.php">Diagrama de Tortuga</a>
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="SIPOC/index.php">Diagrama SIPOC</a>
-                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="General/index.php">Diagrama General</a>
+                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="General/user.php">Diagrama General</a>
                   </nav>
                 </div>
             </div>
@@ -175,13 +175,13 @@ if ($validar == null || $validar = '') {
             </a>
             <div class="collapse" style="color:#FFFFFF" id="collapseRecursos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudPersonal/index.php">Personal</a>
+                <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudPersonal/user.php">Personal</a>
                 <a class="nav-link fw-bold" style="color:#FFFFFF" href="Infraestructura/index.php">Infrestuctura</a>
                 <a class="nav-link fw-bold" style="color:#FFFFFF" href="Documentada/index.php">Info.Documental</a>
               </nav>
             </div>
 
-            <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudArchivos/index.php">
+            <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudArchivos/user.php">
               <div class="sb-nav-link-icon" style="color:#FFFFFF"><ion-icon name="keypad" style="color:#FFFFFF"></ion-icon></div>
               Operación
             </a>
@@ -217,16 +217,16 @@ if ($validar == null || $validar = '') {
                 <div class="container is-fluid">
                     <div class="col-xs-12">
                         <center>
-                            <h1>Administardor de Usuarios</h1>
+                            <h1>Administrador de Usuarios</h1>
                         </center><br>
-
+                        
                         <div>
                             <a class="btn btn-primary" href="../index.php">Nuevo usuario
                                 <i class="fa fa-plus"></i> </a>
                             <a class="btn btn-success" href="../includes/excel.php">Reporte Excel
                                 <i class="fa fa-table" aria-hidden="true"></i>
                             </a>
-
+                        </div>
                         </div>
                         <br>
                         </form>
@@ -246,7 +246,6 @@ if ($validar == null || $validar = '') {
                                     <th>Empresa</th>
                                     <th>Rol</th>
                                     <th>Acciones</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -255,14 +254,16 @@ if ($validar == null || $validar = '') {
                             INNER JOIN empresas e on r.id_empresa = e.id_empresa 
                             INNER JOIN foda fo on r.id_foda = fo.id_foda; -->
                                 <?php
+ 
+                                include("../includes/_db.php");
+                                $id_empresa = $_SESSION['id_empresa'];
 
-                                $conexion = mysqli_connect("localhost", "root", "", "r_user");
+                                if ( $id_empresa == 1) { //admin     
                                 $SQL = "SELECT u.id,u.nombre, u.correo, u.telefono, u.password, u.fecha, r.rol, emp.emp_nombre from user u 
                                 inner JOIN permisos r on u.rol= r.id 
                                 inner JOIN empresas emp on u.id_empresa= emp.id_empresa";
                                 $dato = mysqli_query($conexion, $SQL);
 
-                                if ($dato->num_rows > 0) {
                                     while ($fila = mysqli_fetch_array($dato)) {
 
                                 ?>
@@ -293,16 +294,41 @@ if ($validar == null || $validar = '') {
                                     <?php
                                     }
                                 } else {
-
+                                $SQL = "SELECT u.id, u.nombre, u.correo, u.telefono, u.password, u.fecha, u.id_empresa, r.rol, emp.emp_nombre from user u 
+                                        inner JOIN permisos r on u.rol= r.id 
+                                        inner JOIN empresas emp on u.id_empresa= emp.id_empresa 
+                                        WHERE u.id_empresa='$id_empresa'
+                                        AND u.rol BETWEEN 2 AND 3";
+                                  $dato = mysqli_query($conexion, $SQL);
+                                  while ($fila = mysqli_fetch_array($dato)) {
                                     ?>
-                                    <tr class="text-center">
-                                        <td colspan="16">No existen registros</td>
-                                    </tr>
+                                        <tr>
+                                          <td><?php echo $fila['nombre']; ?></td>
+                                          <td><?php echo $fila['correo']; ?></td>
+                                          <td><?php echo $fila['telefono']; ?></td>
+                                          <td><?php echo $fila['password']; ?></td>
+                                          <td><?php echo $fila['fecha']; ?></td>
+                                          <td><?php echo $fila['emp_nombre']; ?></td>
+                                          <td><?php echo $fila['rol']; ?></td>
+                    
+                                          <td>
 
 
+                                                        <a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?> ">
+                                                            <i class="fa fa-edit"></i> </a>
+
+                                                        <a class="btn btn-danger" href="eliminar_user.php?id=<?php echo $fila['id'] ?>">
+                                                            <i class="fa fa-trash"></i></a>
+
+                                                        </td>
+
+                    
+                                        </tr>
+                    
                                 <?php
 
                                 }
+                              }
 
                                 ?>
 

@@ -5,7 +5,7 @@ session_start();
 error_reporting(0);
 
 
-include('db.php');
+include('../../includes/_db.php');
 $id_empresa = $_SESSION['id_empresa'];
 
 if (isset($_POST['save_task'])) {
@@ -24,16 +24,15 @@ if (isset($_POST['save_task'])) {
   $do = $_POST['do'];
   $dr = $_POST['dr'];
 
-  $query = "INSERT INTO infraestructura (r,t,p,re,u,d,m,a,c,di,ve,un,do,dr,id_empresa) 
-  VALUES ('$r','$t','$p','$re','$u','$d','$m','$a','$c','$di','$ve','$un','$do','$dr','$id_empresa')";
+  $query = "INSERT INTO infraestructura (r,t,p,re,u,d,m,a,c,di,ve,un,do,dr,id_empresa) VALUES ('$r','$t','$p','$re','$u','$d','$m','$a','$c','$di','$ve','$un','$do','$dr','$id_empresa')";
   $result = mysqli_query($conexion, $query);
   if(!$result) {
     die("Query Failed.");
   }
 
-
+  $_SESSION['message'] = 'Registro exitoso';
+  $_SESSION['message_type'] = 'success';
   header('Location: index.php');
-
 }
 
 ?>

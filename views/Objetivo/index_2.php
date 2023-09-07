@@ -13,7 +13,7 @@ if ($validar == null || $validar = '') {
   header("Location: ../../includes/login.php");
   die();
 }
-?>
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +100,7 @@ if ($validar == null || $validar = '') {
 
                 <?php
 
-                include('db.php');
+                include('../../includes/_db.php');
 
                 $id_empresa = $_SESSION['id_empresa'];
 
@@ -109,14 +109,16 @@ if ($validar == null || $validar = '') {
                   $result_tasks = mysqli_query($conexion, $query);
                 } else {
 
-                  $query = "SELECT * FROM objetivos WHERE id_empresa = '$id_empresa'";
+                  $id_empresa = $_SESSION['id_empresa'];
+                  $query = "SELECT o.id_obj, o.ob, o.me, o.ind, o.fu, o.es, o.re, o.fi, o.hu, o.eq, o.ti, o.feI, o.feT, emp.emp_nombre from objetivos o 
+                  inner JOIN empresas emp on o.id_empresa= emp.id_empresa WHERE emp.id_empresa = $id_empresa";
                   $result_tasks = mysqli_query($conexion, $query);
                 }                
               
 
                 while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                   <tr>
-                    <th><?php echo $row['id_empresa'] ?></th>
+                    <th><?php echo $row['emp_nombre'] ?></th>
                     <th><?php echo $row['ob'] ?></th>
                     <th><?php echo $row['me'] ?></th>
                     <th><?php echo $row['ind'] ?></th>

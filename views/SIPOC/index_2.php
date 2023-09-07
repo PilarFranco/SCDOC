@@ -25,6 +25,7 @@ if ($validar == null || $validar = '') {
   <meta name="description" content="" />
   <meta name="author" content="" />
   <title>SIPOC</title>
+  <link rel="icon" type="image/png" href="../../includes/img/icono.png"/>
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
   <link href="../../css/styles.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
@@ -71,7 +72,7 @@ if ($validar == null || $validar = '') {
             </tbody>
 
               <tr>
-                <th></th>
+                <td rowspan="2">Empresa</td>
                 <th>PROVEEDORES</th>
                 <th>ENTRADAS</th>
                 <th>PROCESO</th>
@@ -79,7 +80,6 @@ if ($validar == null || $validar = '') {
                 <th>CLIENTES</th>
               </tr>
               <tr>
-                <th>Empresa</th>
                 <th>Supplier</th>
                 <th>Imput</th>
                 <th>Process</th>
@@ -91,22 +91,23 @@ if ($validar == null || $validar = '') {
                      <tbody>
                      <h1> </h1> 
           <?php
-                          include('db.php');
+                          include('../../includes/_db.php');
 
           $id_empresa = $_SESSION['id_empresa'];
-
+ 
           if ( $id_empresa == 1) { //admin
             $query = "SELECT * FROM sipoc";
             $result_tasks = mysqli_query($conexion, $query);
           } else {
 
-            $query = "SELECT * FROM sipoc WHERE id_empresa = '$id_empresa'";
+            $query = "SELECT s.id, s.pro, s.en, s.sos, s.sal, s.cli, emp.emp_nombre from sipoc s
+            inner JOIN empresas emp on s.id_empresa= emp.id_empresa WHERE s.id_empresa = '$id_empresa'";
             $result_tasks = mysqli_query($conexion, $query);
           }
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                                    <tr>
-                         <th><?php  echo $row['id_empresa']?></th>
+                         <th><?php  echo $row['emp_nombre']?></th>
                          <th><?php  echo $row['pro']?></th>
                          <th><?php  echo $row['en']?></th>
                          <th><?php  echo $row['sos']?></th>

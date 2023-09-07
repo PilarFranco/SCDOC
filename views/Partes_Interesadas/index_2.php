@@ -82,7 +82,7 @@ if ($validar == null || $validar = '') {
         <tbody>
         <h1> </h1> 
           <?php
-           include('db.php');
+           include('../../includes/_db.php');
 
            $id_empresa = $_SESSION['id_empresa'];
 
@@ -91,14 +91,15 @@ if ($validar == null || $validar = '') {
              $result_tasks = mysqli_query($conexion, $query);
            } else {
 
-             $query = "SELECT * FROM interesadas WHERE id_empresa = '$id_empresa'";
+             $query = "SELECT it.id, it.i, it.n, it.t, it.e, it.r, it.es, it.a, it.d, it.ass, emp.emp_nombre from interesadas it 
+             inner JOIN empresas emp on it.id_empresa= emp.id_empresa WHERE it.id_empresa = '$id_empresa'";
              $result_tasks = mysqli_query($conexion, $query);
            }
 
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <tr>
-            <th><?php  echo $row['id_empresa']?></th>
+            <th><?php  echo $row['emp_nombre']?></th>
             <th><?php  echo $row['i']?></th>
             <th><?php  echo $row['n']?></th>
             <th><?php  echo $row['t']?></th>

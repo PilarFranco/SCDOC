@@ -84,9 +84,9 @@ if ($validar == null || $validar = '') {
                      <tbody>
                      <h1> </h1> 
                        <?php
-
+ 
                        
-                include('db.php');
+                include('../../includes/_db.php');
                 $id_empresa = $_SESSION['id_empresa'];
 
                 if ( $id_empresa == 1) { //admin
@@ -94,13 +94,14 @@ if ($validar == null || $validar = '') {
                   $result_tasks = mysqli_query($conexion, $query);
                 } else {
      
-                  $query = "SELECT * FROM pestel WHERE id_empresa = '$id_empresa'";
+                  $query = "SELECT pe.id_pestel, pe.p, pe.e, pe.s, pe.t, pe.ec, pe.l, emp.emp_nombre from pestel pe
+                  inner JOIN empresas emp on pe.id_empresa= emp.id_empresa WHERE pe.id_empresa = '$id_empresa'";
                   $result_tasks = mysqli_query($conexion, $query);
                 }
                   
                        while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                        <tr>
-                       <th><?php  echo $row['id_empresa']?></th>
+                       <th><?php  echo $row['emp_nombre']?></th>
                          <th><?php  echo $row['p']?></th>
                          <th><?php  echo $row['e']?></th>
                          <th><?php  echo $row['s']?></th>

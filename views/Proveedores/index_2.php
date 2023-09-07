@@ -14,7 +14,7 @@ if ($validar == null || $validar = '') {
   die();
 }
 ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,7 +88,7 @@ if ($validar == null || $validar = '') {
 
 
                     <?php
-                    include('db.php');
+                    include('../../includes/_db.php');
 
                     $id_empresa = $_SESSION['id_empresa'];
 
@@ -97,14 +97,15 @@ if ($validar == null || $validar = '') {
                   $result_tasks = mysqli_query($conexion, $query);
                 } else {
 
-                  $query = "SELECT * FROM proveedores WHERE id_empresa = '$id_empresa'";
+                  $query = "SELECT p.id, p.n, p.r, p.d, p.t, p.e, p.a, p.f, p.c, p.fe, p.cl, emp.emp_nombre from proveedores p
+                  inner JOIN empresas emp on p.id_empresa= emp.id_empresa WHERE p.id_empresa = '$id_empresa'";
                   $result_tasks = mysqli_query($conexion, $query);
                 }
           
 
                     while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                       <tr>
-                        <th><?php echo $row['id_empresa'] ?></th>
+                        <th><?php echo $row['emp_nombre'] ?></th>
                         <th><?php echo $row['n'] ?></th>
                         <th><?php echo $row['r'] ?></th>
                         <th><?php echo $row['d'] ?></th>

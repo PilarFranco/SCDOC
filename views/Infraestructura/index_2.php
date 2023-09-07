@@ -95,7 +95,7 @@ if ($validar == null || $validar = '') {
 
                   <?php
 
-                  include('db.php');
+                  include('../../includes/_db.php');
 
                   $id_empresa = $_SESSION['id_empresa'];
 
@@ -104,15 +104,14 @@ if ($validar == null || $validar = '') {
                     $result_tasks = mysqli_query($conexion, $query);
                   } else {
   
-                    $query = "SELECT * FROM infraestructura WHERE id_empresa = '$id_empresa'";
+                    $query = "SELECT i.id, i.r, i.t, i.p, i.re, i.u, i.d, i.m, i.a, i.c, i.di, i.ve, i.un, i.do, i.dr, emp.emp_nombre from infraestructura i 
+                    inner JOIN empresas emp on i.id_empresa= emp.id_empresa WHERE i.id_empresa = '$id_empresa'";
                     $result_tasks = mysqli_query($conexion, $query);
                   }
 
-                  
-
                   while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                     <tr>
-                      <th><?php echo $row['id_empresa'] ?></th>
+                      <th><?php echo $row['emp_nombre'] ?></th>
                       <th><?php echo $row['r'] ?></th>
                       <th><?php echo $row['t'] ?></th>
                       <th><?php echo $row['p'] ?></th>

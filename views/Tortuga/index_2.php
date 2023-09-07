@@ -23,7 +23,8 @@ if ($validar == null || $validar = '') {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Administrador</title>
+  <title>DIAGRAMA DE TORTUGA</title>
+  <link rel="icon" type="image/png" href="../../includes/img/icono.png"/>
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
   <link href="../../css/styles.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
@@ -80,6 +81,7 @@ if ($validar == null || $validar = '') {
           </thead>
           <tbody>
             <tr>
+              <th>Empresa</th>
               <td>Proceso</td>
               <td>¿Con que?</td>
               <td>Entradas</td>
@@ -91,7 +93,7 @@ if ($validar == null || $validar = '') {
             </tr>
 
             <?php
-            include('db.php');
+            include('../../includes/_db.php');
            
             $id_empresa = $_SESSION['id_empresa'];
 
@@ -100,7 +102,8 @@ if ($validar == null || $validar = '') {
               $result_tasks = mysqli_query($conexion, $query);
             } else {
 
-              $query = "SELECT * FROM tortuga";
+              $query = "SELECT t.id, t.pro, t.c, t.e, t.m, t.co, t.s, t.com, emp.emp_nombre from tortuga t
+              inner JOIN empresas emp on t.id_empresa= emp.id_empresa WHERE t.id_empresa = '$id_empresa'";
               $result_tasks = mysqli_query($conexion, $query);
             }
 
@@ -110,7 +113,7 @@ if ($validar == null || $validar = '') {
 
 
               <tr>
-
+                <th><?php echo $row['emp_nombre'] ?></th>
                 <th><?php echo $row['pro'] ?></th>
                 <th><?php echo $row['c'] ?></th>
                 <th><?php echo $row['e'] ?></th>

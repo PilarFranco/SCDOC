@@ -189,7 +189,7 @@ if ($validar == null || $validar = '') {
       <div class="container is-fluid">
                     <div class="col-xs-12">
                         <center>
-                            <h1>Administardor de Empresa</h1>
+                            <h1>Administrador de Empresa</h1>
                         </center><br>
 
                         <div>
@@ -220,7 +220,7 @@ if ($validar == null || $validar = '') {
 
                                 <?php
 
-                                $conexion = mysqli_connect("localhost", "root", "", "r_user");
+                                include("../includes/_db.php");
                                 $SQL = "SELECT * FROM empresas where id_empresa='$id_empresa'";
                                 $dato = mysqli_query($conexion, $SQL);
 

@@ -78,7 +78,17 @@ if ($validar == null || $validar = '') {
                             debilidades en que las amenazas son externas y, por lo general, están fuera de nuestro control.</p>
 
                    <tr>
+                   <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
                           <td></td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                           <td>F</td>
                           <td>O</td>
                           <td>D</td>
@@ -88,7 +98,17 @@ if ($validar == null || $validar = '') {
                           
                       </tr>
                       <tr>
+                      <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
                           <td>Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                           <td><required size="20">Fortalezas</td>
                           <td><required size="20">Oportunidades</td>
                           <td><required size="16">Debilidades</td>
@@ -103,21 +123,32 @@ if ($validar == null || $validar = '') {
                  
             <?php
 
-            include('db.php');
+            include('../../includes/_db.php');
 
             $id_empresa = $_SESSION['id_empresa'];
 
             if ( $id_empresa == 1) { //admin
-              $query = "SELECT * FROM foda";
+              $query = "SELECT fo.id, fo.f, fo.o, fo.d, fo.a, emp.emp_nombre from foda fo 
+              inner JOIN empresas emp on fo.id_empresa= emp.id_empresa";
               $result_tasks = mysqli_query($conexion, $query);           
             }else{
               $query = "SELECT * FROM foda WHERE id_empresa = '$id_empresa'";
               $result_tasks = mysqli_query($conexion, $query);        
             }
-   
-    while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-    <tr>
-      <th><?php  echo $row['id_empresa']?></th>
+    
+              while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+              <tr>
+              <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
       <th><?php  echo $row['f']?></th>
       <th><?php  echo $row['o']?></th>
       <th><?php  echo $row['d']?></th>

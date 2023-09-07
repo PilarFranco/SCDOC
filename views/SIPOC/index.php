@@ -25,6 +25,7 @@ if ($validar == null || $validar = '') {
   <meta name="description" content="" />
   <meta name="author" content="" />
   <title>SIPOC</title>
+  <link rel="icon" type="image/png" href="../../includes/img/icono.png"/>
   <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
   <link href="../../css/styles.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
@@ -76,7 +77,17 @@ if ($validar == null || $validar = '') {
                                   <h1></h1>
 
               <tr>
-              <td></td>
+              <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                      <td></td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                 <td><required size="20"><center>S</center></td>
                 <td><required size="20"><center>I</center></td>
                 <td><required size="16"><center>P</center></td>
@@ -87,7 +98,17 @@ if ($validar == null || $validar = '') {
             </tbody>
 
               <tr>
-                <th></th>
+              <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                      <td rowspan="2">Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                 <th>PROVEEDORES</th>
                 <th>ENTRADAS</th>
                 <th>PROCESO</th>
@@ -95,24 +116,24 @@ if ($validar == null || $validar = '') {
                 <th>CLIENTES</th>
               </tr>
               <tr>
-                <th>Empresa</th>
                 <th>Supplier</th>
                 <th>Imput</th>
                 <th>Process</th>
                 <th>Output</th>
                 <th>Customer</th>
-          </tr>               
+          </tr>                
                           
                           </thead>
                      <tbody>
                      <h1> </h1> 
           <?php
-                          include('db.php');
+                          include('../../includes/_db.php');
 
           $id_empresa = $_SESSION['id_empresa'];
 
           if ( $id_empresa == 1) { //admin
-            $query = "SELECT * FROM sipoc";
+            $query = "SELECT s.id, s.pro, s.en, s.sos, s.sal, s.cli, emp.emp_nombre from sipoc s
+            inner JOIN empresas emp on s.id_empresa= emp.id_empresa";
             $result_tasks = mysqli_query($conexion, $query);
           } else {
 
@@ -122,7 +143,16 @@ if ($validar == null || $validar = '') {
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                                    <tr>
-                         <th><?php  echo $row['id_empresa']?></th>
+                                   <?php
+                      include('../../includes/_db.php');
+                      $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+                  }
+                  ?>
                          <th><?php  echo $row['pro']?></th>
                          <th><?php  echo $row['en']?></th>
                          <th><?php  echo $row['sos']?></th>

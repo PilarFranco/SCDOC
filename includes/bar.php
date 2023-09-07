@@ -100,7 +100,7 @@
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Pestel/index.php">Pestel</a>
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Foda/index.php">Foda</a>
-                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Partes_Interesadas/index.php">Partes intersadas</a>
+                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Partes_Interesadas/index.php">Partes interesadas</a>
                   </nav>
                 </div>
                 <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Comunicacion/index.php">
@@ -126,7 +126,7 @@
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Tortuga/index.php">Diagrama de Tortuga</a>
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/SIPOC/index.php">Diagrama SIPOC</a>
-                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/General/index.php">Diagrama General</a>
+                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/General/user.php">Diagrama General</a>
                   </nav>
                 </div>
             </div>
@@ -144,13 +144,13 @@
             </a>
             <div class="collapse" style="color:#FFFFFF" id="collapseRecursos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudPersonal/index.php">Personal</a>
+                <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudPersonal/user.php">Personal</a>
                 <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Infraestructura/index.php">Infrestuctura</a>
                 <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Documentada/index.php">Info.Documental</a>
               </nav>
             </div>
 
-            <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudArchivos/index.php">
+            <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudArchivos/user.php">
               <div class="sb-nav-link-icon" style="color:#FFFFFF"><ion-icon name="keypad" style="color:#FFFFFF"></ion-icon></div>
               Operación
             </a>

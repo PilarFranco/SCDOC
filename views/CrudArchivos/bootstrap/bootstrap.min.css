@@ -2,48 +2,10 @@
 
 /*!
  * Bootstrap  v5.2.2 (https://getbootstrap.com/)
- * Copyright 2011-2023 The Bootstrap Authors
- * Copyright 2011-2023 Twitter, Inc.
+ * Copyright 2011-2022 The Bootstrap Authors
+ * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- h1 {
-    color: #0e828c;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    /*tipografía texto*/
-    font-size: 60px;
-    margin: 10px;
-    margin-top: 20px;
-    margin-block-end: 30px;
-    text-align: center;
-}
-.titulo {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    /*tipografía texto*/
-    text-align: center;
-    align-items: center;
-    font-style: bold;
-    font-size: 20px;
-}
-.forma {
-    margin-left: 20px;
-    border: 2px solid #0e828c;
-    /*anchura, estilo y color borde*/
-    padding: 10px;
-    /*espacio alrededor texto*/
-    background-color: #8fd0d6;
-    /*color botón*/
-    color: #0e828c;
-    align-items: center;
-    /*color texto*/
-    text-decoration: none;
-    /*decoración texto*/
-    text-transform: uppercase;
-    /*capitalización texto*/
-    font-family: 'Helvetica', bold;
-    /*tipografía texto*/
-    border-radius: 50px;
-    /*bordes redondos*/
-}
 
 :root {
     --bs-blue: #0d6efd;
@@ -165,6 +127,17 @@ h6 {
     line-height: 1.2
 }
 
+.h1,
+h1 {
+    font-size: calc(1.375rem + 1.5vw)
+}
+
+@media (min-width:1200px) {
+    .h1,
+    h1 {
+        font-size: 2.5rem
+    }
+}
 
 .h2,
 h2 {

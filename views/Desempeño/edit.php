@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+include("../../includes/_db.php");
 
 $p = '';
 $o= '';

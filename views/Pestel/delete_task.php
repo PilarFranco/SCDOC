@@ -1,6 +1,6 @@
 <?php
 
-include("db.php");
+include("../../includes/_db.php");
 
 
 if(isset($_GET['id_pestel'])) {

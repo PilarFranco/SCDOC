@@ -104,7 +104,17 @@ if ($validar == null || $validar = '') {
                     </tr>
 
                     <tr>
-                      <td>Empresa</td>
+                    <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                          <td>Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                       <td>Responsable</td>
                       <td>Tipo de mantenimiento</td>
                       <td>Periodo/frecuencia de mantenimiento</td>
@@ -125,27 +135,38 @@ if ($validar == null || $validar = '') {
                 <tbody>
                   <h1> </h1>
 
-
+                  <a href=""></a>
                   <?php
 
-                  include('db.php');
+                  include('../../includes/_db.php');
 
                   $id_empresa = $_SESSION['id_empresa'];
 
                   if ( $id_empresa == 1) { //admin
-                    $query = "SELECT * FROM infraestructura";
+                    $query = "SELECT i.id, i.r, i.t, i.p, i.re, i.u, i.d, i.m, i.a, i.c, i.di, i.ve, i.un, i.do, i.dr, emp.emp_nombre from infraestructura i 
+                    inner JOIN empresas emp on i.id_empresa= emp.id_empresa";
                     $result_tasks = mysqli_query($conexion, $query);
                   } else {
   
                     $query = "SELECT * FROM infraestructura WHERE id_empresa = '$id_empresa'";
                     $result_tasks = mysqli_query($conexion, $query);
-                  }
+                  } 
 
                   
 
                   while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                     <tr>
-                      <th><?php echo $row['id_empresa'] ?></th>
+                    <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                       <th><?php echo $row['r'] ?></th>
                       <th><?php echo $row['t'] ?></th>
                       <th><?php echo $row['p'] ?></th>

@@ -3,7 +3,7 @@
 session_start();
 error_reporting(0);
 
-include("db.php");
+include("../../includes/_db.php");
 $id_empresa = $_SESSION['id_empresa'];
 
 $id= '';

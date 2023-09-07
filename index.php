@@ -9,18 +9,11 @@ if ($validar == null || $validar = '') {
 
     header("Location: ./includes/login.php");
     die();
-
-
-
 }
-
-
-
 
 ?>
 <!DOCTYPE html>
 <html lang="es-MX">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +25,6 @@ if ($validar == null || $validar = '') {
 </head>
 
 <body id="page-top">
-
 
     <form action="./includes/validar.php" method="POST">
         <div id="login">
@@ -66,7 +58,6 @@ if ($validar == null || $validar = '') {
                                 <label for="rol" class="form-label">Rol de usuario *</label>
                                 <input type="number" id="rol" name="rol" class="form-control"
                                     placeholder="Escribe el rol 1 admin 2 lector">
-
                             </div>
 
                             <div class="form-group">
@@ -74,7 +65,7 @@ if ($validar == null || $validar = '') {
                                 <select name="empresa" type="number" class="form-control">
 
                                     <?php
-                                   $conexion = mysqli_connect("localhost", "root", "", "r_user");
+                                   include("includes/_db.php");
                                    $SQL = "SELECT id_empresa, emp_nombre FROM empresas";
                                    $query = mysqli_query($conexion, $SQL);
                                     while ($row = mysqli_fetch_array($query)) {
@@ -91,7 +82,6 @@ if ($validar == null || $validar = '') {
                             
                             </div>
 
-
                             <br>
 
                             <div class="mb-3">
@@ -102,7 +92,6 @@ if ($validar == null || $validar = '') {
                             </div>
                         </div>
                     </div>
-
     </form>
     </div>
     </div>

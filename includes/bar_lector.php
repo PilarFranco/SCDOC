@@ -1,6 +1,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="user.php"><ion-icon name="person-circle-outline"></ion-icon> Usuario <?php echo $_SESSION['nombre']; ?></a>
+        <a class="navbar-brand ps-3"><ion-icon name="person-circle-outline"></ion-icon> Usuario <?php echo $_SESSION['nombre']; ?></a>
+
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -109,7 +110,7 @@
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" style="color:#FFFFFF" href="../../views/Tortuga/index_2.php">Diagrama de Tortuga</a>
                     <a class="nav-link" style="color:#FFFFFF" href="../../views/SIPOC/index_2.php">Diagrama SIPOC</a>
-                    <a class="nav-link" style="color:#FFFFFF" href="../../views/General/index_2.php">Diagrama General</a>
+                    <a class="nav-link" style="color:#FFFFFF" href="../../views/General/index.php">Diagrama General</a>
                     </nav>
                 </div>
                         </div>
@@ -127,13 +128,13 @@
                   </a>
                   <div class="collapse" style="color:#FFFFFF" id="collapseRecursos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                       <nav class="sb-sidenav-menu-nested nav">
-                          <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudPersonal/index_2.php">Personal</a>
+                          <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudPersonal/index.php">Personal</a>
                           <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Infraestructura/index_2.php">Infrestuctura</a>
                           <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Documentada/index_2.php">Info.Documental</a>
                       </nav>
                   </div>
 
-                  <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudArchivos/index_2.php">
+                  <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/CrudArchivos/index.php">
                       <div class="sb-nav-link-icon" style="color:#FFFFFF"><ion-icon name="keypad" style="color:#FFFFFF"></ion-icon></div>
                   Operación
                   </a>
@@ -147,7 +148,7 @@
                       <div class="sb-nav-link-icon" style="color:#FFFFFF"><ion-icon name="cog" style="color:#FFFFFF"></ion-icon></div>
                       Desempeño                            </a>
 
-                  <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Mejora/index.php">
+                  <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Mejora/index_2.php">
                       <div class="sb-nav-link-icon fw-bold" style="color:#FFFFFF"><ion-icon name="star-half" style="color:#FFFFFF"></ion-icon></div>
                       Mejora
                   </a>

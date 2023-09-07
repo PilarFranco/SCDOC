@@ -133,7 +133,7 @@ if ($validar == null || $validar = '') {
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="Partes_Interesadas/index.php">Partes intersadas</a>
                   </nav>
                 </div>
-                <a class="nav-link fw-bold" style="color:#FFFFFF" href="../../views/Comunicacion/index.php">
+                <a class="nav-link fw-bold" style="color:#FFFFFF" href="Comunicacion/index.php">
                   <div class="sb-nav-link-icon" style="color:#FFFFFF"></div>
                   Comunicación
                 </a>
@@ -156,7 +156,7 @@ if ($validar == null || $validar = '') {
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="Tortuga/index.php">Diagrama de Tortuga</a>
                     <a class="nav-link fw-bold" style="color:#FFFFFF" href="SIPOC/index.php">Diagrama SIPOC</a>
-                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="General/index.php">Diagrama General</a>
+                    <a class="nav-link fw-bold" style="color:#FFFFFF" href="General/user.php">Diagrama General</a>
                   </nav>
                 </div>
             </div>
@@ -174,13 +174,13 @@ if ($validar == null || $validar = '') {
             </a>
             <div class="collapse" style="color:#FFFFFF" id="collapseRecursos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudPersonal/index.php">Personal</a>
+                <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudPersonal/user.php">Personal</a>
                 <a class="nav-link fw-bold" style="color:#FFFFFF" href="Infraestructura/index.php">Infrestuctura</a>
                 <a class="nav-link fw-bold" style="color:#FFFFFF" href="Documentada/index.php">Info.Documental</a>
               </nav>
             </div>
 
-            <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudArchivos/index.php">
+            <a class="nav-link fw-bold" style="color:#FFFFFF" href="CrudArchivos/user.php">
               <div class="sb-nav-link-icon" style="color:#FFFFFF"><ion-icon name="keypad" style="color:#FFFFFF"></ion-icon></div>
               Operación
             </a>
@@ -216,17 +216,25 @@ if ($validar == null || $validar = '') {
                 <div class="container is-fluid">
                     <div class="col-xs-12">
                         <center>
-                            <h1>Administardor de Empresas</h1>
+                            <h1>Administrador de Empresas</h1>
                         </center><br>
+                        <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>  
+                  <div>
+                    <a class="btn btn-primary" href="../views/Empresas/nuevaempresa.php">Nueva Empresa
+                        <i class="fa fa-plus"></i> </a>
+                    <a class="btn btn-success" href="../includes/excel.php">Reporte Excel
+                        <i class="fa fa-table" aria-hidden="true"></i>
+                    </a>
+                </div>
+                  <?php
+                  } else{
 
-                        <div>
-                            <a class="btn btn-primary" href="../views/Empresas/nuevaempresa.php">Nueva Empresa
-                                <i class="fa fa-plus"></i> </a>
-                            <a class="btn btn-success" href="../includes/excel.php">Reporte Excel
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                            </a>
-
-                        </div>
+                  }
+                  ?>
                         <br>
                         </form>
 
@@ -237,64 +245,86 @@ if ($validar == null || $validar = '') {
 
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
                                     <th>ID Empresa</th>
+                                    <th>Nombre</th>
                                     <th>Logo</th>
+                                    <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
                                     <th>Acciones</th>
+                  <?php
+                  } else{
 
+                  }
+                  ?>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <?php
 
-                                $conexion = mysqli_connect("localhost", "root", "", "r_user");
-                                $SQL = "SELECT * FROM empresas ";
-                                $dato = mysqli_query($conexion, $SQL);
+                                include('../includes/_db.php');
+                                $id_empresa = $_SESSION['id_empresa'];
 
-                                if ($dato->num_rows > 0) {
+                                if ( $id_empresa == 1) { //admin
+                                  $SQL = "SELECT * FROM empresas ";
+                                  $dato = mysqli_query($conexion, $SQL);
+  
+                                  while ($fila = mysqli_fetch_array($dato)) {
+
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $fila['id_empresa']; ?></td>
+                                                <td><?php echo $fila['emp_nombre']; ?></td>
+                                             <td>
+                                        <img width="100" src="data:<?php echo $fila['tipo']; ?>;base64,<?php echo  base64_encode($fila['logo']); ?>">
+    
+                                    </td>
+    
+    
+    
+                                                <td>
+    
+    
+                                                    <a class="btn btn-warning" href="./Empresas/modificar.php?id=<?php echo $fila['id_empresa'] ?> ">
+                                                        <i class="fa fa-edit"></i> </a>
+    
+                                                    <a class="btn btn-danger" href="./Empresas/eliminar.php?id=<?php echo $fila['id_empresa'] ?>">
+                                                        <i class="fa fa-trash"></i></a>
+    
+                                                </td>
+                                            </tr>
+    
+    
+                                        <?php
+                                        }
+    
+                                }else{
+                                  $SQLL = "SELECT * FROM empresas where id_empresa='$id_empresa'";
+                                  $dato = mysqli_query($conexion, $SQLL);
                                     while ($fila = mysqli_fetch_array($dato)) {
 
                                 ?>
                                         <tr>
-                                            <td><?php echo $fila['emp_nombre']; ?></td>
                                             <td><?php echo $fila['id_empresa']; ?></td>
+                                            <td><?php echo $fila['emp_nombre']; ?></td>
+
                                          <td>
                                     <img width="100" src="data:<?php echo $fila['tipo']; ?>;base64,<?php echo  base64_encode($fila['logo']); ?>">
 
                                 </td>
 
-
-
-                                            <td>
-
-
-                                                <a class="btn btn-warning" href="./Empresas/modificar.php?id=<?php echo $fila['id_empresa'] ?> ">
-                                                    <i class="fa fa-edit"></i> </a>
-
-                                                <a class="btn btn-danger" href="./Empresas/eliminar.php?id=<?php echo $fila['id_empresa'] ?>">
-                                                    <i class="fa fa-trash"></i></a>
-
-                                            </td>
                                         </tr>
 
-
-                                    <?php
-                                    }
-                                } else {
-
-                                    ?>
-                                    <tr class="text-center">
-                                        <td colspan="16">No existen registros</td>
-                                    </tr>
-
-
-                                <?php
-
+                                  <?php
+  
+                                  }
                                 }
-
-                                ?>
-
+                                
+                                  ?>
+  
 
 </body>
 </table>

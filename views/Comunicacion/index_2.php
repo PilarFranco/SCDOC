@@ -7,7 +7,6 @@ $validar = $_SESSION['nombre'];
 $id_empresa = $_SESSION['id_empresa'];
 
 
-
 if ($validar == null || $validar = '') {
 
   header("Location: ../../includes/login.php");
@@ -97,7 +96,7 @@ if ($validar == null || $validar = '') {
 
     <?php
     
-    include('db.php');
+    include('../../includes/_db.php');
 
     $id_empresa = $_SESSION['id_empresa'];
 
@@ -106,13 +105,15 @@ if ($validar == null || $validar = '') {
       $result_tasks = mysqli_query($conexion, $query);
     } else {
 
-      $query = "SELECT * FROM comunicacion WHERE id_empresa = '$id_empresa'";
+      $id_empresa = $_SESSION['id_empresa'];
+      $query = "SELECT co.id, co.tipo, co.me, co.em, co.re, co.cuando, co.co, co.ind, co.ele, co.mai, co.im, co.res, emp.emp_nombre from comunicacion co 
+      inner JOIN empresas emp on co.id_empresa= emp.id_empresa WHERE emp.id_empresa = $id_empresa";
       $result_tasks = mysqli_query($conexion, $query);
     }                
 
       while($row = mysqli_fetch_assoc($result_tasks)) { ?>
         <tr>
-          <th><?php echo $row['id_empresa'] ?></th>
+          <th><?php echo $row['emp_nombre'] ?></th>
           <th><?php  echo $row['tipo']?></th>
           <th><?php  echo $row['me']?></th>
           <th><?php  echo $row['em']?></th>

@@ -101,7 +101,7 @@ if ($validar == null || $validar = '') {
                        
           
 <?php
-          include('db.php');
+          include('../../includes/_db.php');
           
           $id_empresa = $_SESSION['id_empresa'];
 
@@ -110,7 +110,8 @@ if ($validar == null || $validar = '') {
             $result_tasks = mysqli_query($conexion, $query);
           } else {
 
-            $query = "SELECT * FROM desempeño WHERE id_empresa = '$id_empresa'";
+            $query = "SELECT de.id, de.p, de.o, de.r, de.i, de.m, de.f, de.en, de.fe, de.ma, de.ab, de.may, de.ju, de.jul, de.ag, de.se, de.oc, de.no, de.di, emp.emp_nombre from desempeño de 
+            inner JOIN empresas emp on de.id_empresa= emp.id_empresa WHERE de.id_empresa = '$id_empresa'";
             $result_tasks = mysqli_query($conexion, $query);
           }
         
@@ -118,7 +119,7 @@ if ($validar == null || $validar = '') {
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <tr>
-            <th><?php  echo $row['id_empresa']?></th>
+            <th><?php  echo $row['emp_nombre']?></th>
             <th><?php  echo $row['p']?></th>
             <th><?php  echo $row['o']?></th>
             <th><?php  echo $row['r']?></th>
@@ -137,17 +138,8 @@ if ($validar == null || $validar = '') {
             <th><?php  echo $row['oc']?></th>
             <th><?php  echo $row['no']?></th>
             <th><?php  echo $row['di']?></th>
+ 
 
-
-                     
-            <td>
-              <a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
-                <i class="fas fa-marker"></i>
-              </a>
-              <a href="delete_task.php?id=<?php echo $row['id']?>" class="btn btn-danger">
-                <i class="far fa-trash-alt"></i>
-              </a>
-            </td>
           </tr>
           <?php } ?>
         </tbody>

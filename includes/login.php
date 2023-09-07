@@ -61,6 +61,8 @@ h2{
     
     </style>
         <title>Login</title>
+            <link rel="icon" type="image/png" href="../includes/img/icono.png"/>
+
 </head>
 
 <body>

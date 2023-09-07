@@ -90,7 +90,17 @@ if ($validar == null || $validar = '') {
                         <td colspan="11">PROVEEDORES NACIONALES</td>
                       </tr>
                       <tr>
-                      <td rowspan="2">Empresa</td>
+                      <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+            <td rowspan="2">Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                         <td>Nombre del Proveedor</td>
                         <td>R.F.C.</td>
                         <td>Domicilio</td>
@@ -110,14 +120,15 @@ if ($validar == null || $validar = '') {
 
 
                     <?php
-                    include('db.php');
+                    include('../../includes/_db.php');
 
                     $id_empresa = $_SESSION['id_empresa'];
 
                if ( $id_empresa == 1) { //admin
-                  $query = "SELECT * FROM proveedores";
+                  $query = "SELECT p.id, p.n, p.r, p.d, p.t, p.e, p.a, p.f, p.c, p.fe, p.cl, emp.emp_nombre from proveedores p
+                  inner JOIN empresas emp on p.id_empresa= emp.id_empresa";
                   $result_tasks = mysqli_query($conexion, $query);
-                } else {
+                } else { 
 
                   $query = "SELECT * FROM proveedores WHERE id_empresa = '$id_empresa'";
                   $result_tasks = mysqli_query($conexion, $query);
@@ -126,7 +137,16 @@ if ($validar == null || $validar = '') {
 
                     while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                       <tr>
-                        <th><?php echo $row['id_empresa'] ?></th>
+                      <?php
+                      include('../../includes/_db.php');
+                      $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+                  }
+                  ?>
                         <th><?php echo $row['n'] ?></th>
                         <th><?php echo $row['r'] ?></th>
                         <th><?php echo $row['d'] ?></th>

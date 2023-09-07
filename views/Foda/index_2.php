@@ -83,7 +83,7 @@ if ($validar == null || $validar = '') {
                  
             <?php
 
-            include('db.php');
+            include('../../includes/_db.php');
 
             $id_empresa = $_SESSION['id_empresa'];
 
@@ -91,13 +91,14 @@ if ($validar == null || $validar = '') {
               $query = "SELECT * FROM foda";
               $result_tasks = mysqli_query($conexion, $query);           
             }else{
-              $query = "SELECT * FROM foda WHERE id_empresa = '$id_empresa'";
+              $query = "SELECT fo.id, fo.f, fo.o, fo.d, fo.a, emp.emp_nombre from foda fo 
+              inner JOIN empresas emp on fo.id_empresa= emp.id_empresa WHERE fo.id_empresa = '$id_empresa'";
               $result_tasks = mysqli_query($conexion, $query);        
             }
    
     while($row = mysqli_fetch_assoc($result_tasks)) { ?>
     <tr>
-      <th><?php  echo $row['id_empresa']?></th>
+      <th><?php  echo $row['emp_nombre']?></th>
       <th><?php  echo $row['f']?></th>
       <th><?php  echo $row['o']?></th>
       <th><?php  echo $row['d']?></th>
@@ -141,4 +142,4 @@ if ($validar == null || $validar = '') {
   <script src="../../js/datatables-simple-demo.js"></script>
 </body>
 
-</html>
+</html> 

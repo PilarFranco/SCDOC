@@ -83,7 +83,17 @@ if ($validar == null || $validar = '') {
             </tr>
   
             <tr>
-            <td rowspan="2">Empresa</td>
+            <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                          <td>Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
             <td rowspan="2">Partes interesadas</td>
             <td rowspan="2">Pertinente</td>
             <td colspan="2">Requisitos</td>
@@ -102,12 +112,13 @@ if ($validar == null || $validar = '') {
         <tbody>
         <h1> </h1> 
           <?php
-           include('db.php');
+           include('../../includes/_db.php');
 
            $id_empresa = $_SESSION['id_empresa'];
 
            if ( $id_empresa == 1) { //admin
-             $query = "SELECT * FROM interesadas";
+             $query = "SELECT it.id, it.i, it.n, it.t, it.e, it.r, it.es, it.a, it.d, it.ass, emp.emp_nombre from interesadas it 
+             inner JOIN empresas emp on it.id_empresa= emp.id_empresa";
              $result_tasks = mysqli_query($conexion, $query);
            } else {
 
@@ -118,7 +129,17 @@ if ($validar == null || $validar = '') {
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <tr>
-            <th><?php  echo $row['id_empresa']?></th>
+          <?php
+          include('../../includes/_db.php');
+          $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
             <th><?php  echo $row['i']?></th>
             <th><?php  echo $row['n']?></th>
             <th><?php  echo $row['t']?></th>

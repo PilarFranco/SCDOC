@@ -3,7 +3,7 @@
 session_start();
 error_reporting(0);
 
-include("db.php");
+include("../../includes/_db.php");
 $id_empresa = $_SESSION['id_empresa'];
 
 
@@ -70,7 +70,6 @@ if (isset($_POST['update'])) {
 
  
         <h1>TABLA DE COMUNICACIÓN</h1>
-
 <thead>
 <tr>
     <td rowspan="3">Tipo de Comunicación</td>

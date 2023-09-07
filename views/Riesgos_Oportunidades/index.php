@@ -6,7 +6,7 @@ error_reporting(0);
 $validar = $_SESSION['nombre'];
 $id_empresa = $_SESSION['id_empresa'];
 
-
+ 
 
 if ($validar == null || $validar = '') {
 
@@ -125,7 +125,17 @@ if ($validar == null || $validar = '') {
                     </tr>
 
                     <tr>
+                    <?php
+                  include('../../includes/_db.php');
+                  $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
                       <td>Empresa</td>
+                  <?php
+                  } else{
+
+                  }
+                  ?>
                       <td>Fecha de identificación</td>
                       <td>Tipo R/O</td>
                       <td>Responsable de riesgo/oportunidad</td>
@@ -167,12 +177,13 @@ if ($validar == null || $validar = '') {
                   </tbody>
                   <?php
 
-                  include("db.php");
+                  include("../../includes/_db.php");
 
                   $id_empresa = $_SESSION['id_empresa'];
 
                   if ( $id_empresa == 1) { //admin
-                    $query = "SELECT * FROM riesgos";
+                    $query = "SELECT r.id, r.fecha, r.tipo, r.irespon, r.idesc, r.iorig, r.i_i_e, r.icausa, r.ocuAR, r.conseAR, r.valAR, r.nivAR, r.resAR, r.ocuAO, r.conseAO, r.valAO, r.nivAO, r.controlTRA, r.estraTRA, r.accionesSEG, r.fechaSEG, r.evidSEG, r.freSEG, r.resSEG, r.cumVER, r.fechaVER, r.efecVER, r.obseVER, r.respVER, emp.emp_nombre from riesgos r
+                    inner JOIN empresas emp on r.id_empresa= emp.id_empresa";
                     $result_tasks = mysqli_query($conexion, $query);
                   } else {
   
@@ -182,7 +193,16 @@ if ($validar == null || $validar = '') {
 
                   while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
                     <tr>
-                      <th><?php echo $row['id_empresa'] ?></th>
+                    <?php
+                      include('../../includes/_db.php');
+                      $id_empresa = $_SESSION['id_empresa'];
+                  if ( $id_empresa == 1) { //admin
+                  ?>
+                    <th><?php echo $row['emp_nombre'] ?></th>
+                  <?php
+                  } else{
+                  }
+                  ?>
                       <th><?php echo $row['fecha'] ?></th>
                       <th><?php echo $row['tipo'] ?></th>
                       <th><?php echo $row['irespon'] ?></th>
