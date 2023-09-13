@@ -116,12 +116,12 @@ if ($validar == null || $validar = '') {
                   <thead>
                     <tr>
                       <td></td>
-                      <td colspan="8">IDENTIFICACIÓN DEL RIESGOS/OPORTUNIDAD</td>
+                      <td colspan="7">IDENTIFICACIÓN DEL RIESGOS/OPORTUNIDAD</td>
                       <td colspan="5">ANÁLISIS Y EVALUACIÓN DEL RIESGO</td>
                       <td colspan="4">ANÁLISIS Y EVALUACIÓN DE LA OPORTUNIDAD</td>
                       <td colspan="2">TRATAMIENTO DEL RIESGO/ OPORTUNIDAD</td>
                       <td colspan="5">SEGUIMIENTO DEL RIESGO/OPORTUNIDAD</td>
-                      <td colspan="5">VERIFICACIÓN DEL RIESGO/OPORTUNIDAD</td>
+                      <td colspan="4">VERIFICACIÓN DEL RIESGO/OPORTUNIDAD</td>
                     </tr>
 
                     <tr>
@@ -259,9 +259,12 @@ if ($validar == null || $validar = '') {
 
 
         <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
+          <div class="container-fluid px-9">
             <div class="d-flex align-items-center justify-content-between small">
-              <div class="text-muted">Copyright &copy; Your Website 2023</div>
+              <div class="text-muted"></div>
+              <div>
+              <a>Copyright &copy; Your Website 2023</a>
+              </div>
               <div>
                 <a href="#">Privacy Policy</a>
                 &middot;

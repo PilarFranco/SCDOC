@@ -42,11 +42,10 @@ if ($validar == null || $validar = '') {
 
 
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-1">
          
           </div>
-          <div class="col-md-8">
-          <div class='table-responsive'>
+          <div class="col-md-7">
             <table class="default" id="tabla">
 
               <h1>RECURSOS-INFRAESTRUCTURA</h1>
@@ -63,7 +62,7 @@ if ($validar == null || $validar = '') {
                   <thead>
                     <tr>
                       <td colspan="1"></td>
-                      <td colspan="5">INVENTARIO DE INFRAESTRUCTURA</td>
+                      <td colspan="4">INVENTARIO DE INFRAESTRUCTURA</td>
                       <td colspan="3">FECHA DE ADQUISICIÓN O PUESTA EN SERVICIO</td>
                       <td colspan="3">VIDA ÚTIL (AÑOS)</td>
                       <td colspan="3">ESTADO ACTUAL</td>
@@ -140,10 +139,13 @@ if ($validar == null || $validar = '') {
 
 
       <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-          <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-            <div>
+          <div class="container-fluid px-9">
+            <div class="d-flex align-items-center justify-content-between small">
+              <div class="text-muted"></div>
+              <div>
+              <a>Copyright &copy; Your Website 2023</a>
+              </div>
+              <div>
               <a href="#">Privacy Policy</a>
               &middot;
               <a href="#">Terms &amp; Conditions</a>

@@ -41,19 +41,15 @@ if ($validar == null || $validar = '') {
 
 
         <title>Comunicacion</title>
-        <main class="container p-4">
-
-
 
 <main class="container p-4">
 
 <div class="row">
-<div class="col-md-2">
+<div class="col-md-1">
 
 
 </div>
-<div class="col-md-8">
-<div class='table-responsive'>
+<div class="col-md-7">
 <table class="default" id="tabla">
 
         <h1>TABLA DE COMUNICACIONES</h1>
@@ -138,10 +134,13 @@ if ($validar == null || $validar = '') {
       </main>
 
 
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
+      <footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid px-9">
             <div class="d-flex align-items-center justify-content-between small">
-              <div class="text-muted">Copyright &copy; Your Website 2023</div>
+              <div class="text-muted"></div>
+              <div>
+              <a>Copyright &copy; Your Website 2023</a>
+              </div>
               <div>
                 <a href="#">Privacy Policy</a>
                 &middot;

@@ -123,20 +123,19 @@ if (isset($_POST['update'])) {
 
       <thead>
         <tr>
-            <td colspan="8">IDENTIFICACIÓN DEL RIESGOS/OPORTUNIDAD</td>
+            <td colspan="7">IDENTIFICACIÓN DEL RIESGOS/OPORTUNIDAD</td>
             <td colspan="5">ANÁLISIS Y EVALUACIÓN DEL RIESGO</td>
             <td colspan="4">ANÁLISIS Y EVALUACIÓN DE LA OPORTUNIDAD</td>
             <td colspan="2">TRATAMIENTO DEL RIESGO/ OPORTUNIDAD</td>
             <td colspan="5">SEGUIMIENTO DEL RIESGO/OPORTUNIDAD</td>
-            <td colspan="5">VERIFICACIÓN DEL RIESGO/OPORTUNIDAD</td> 
+            <td colspan="4">VERIFICACIÓN DEL RIESGO/OPORTUNIDAD</td> 
           </tr>
 
           <tr>
-            <td>No.</td>
             <td>Fecha de identificación</td>
             <td>Tipo R/O</td>
             <td>Responsable de riesgo/oportunidad</td>
-            <td>Riesgo/ Oportunidad (Descripción)</td>
+            <td>Riesgo/Oportunidad (Descripción)</td>
             <td>Origen del  del riesgo/ oportunidad</td>
             <td>Interno/Externo</td>
             <td> Posibles causas que lo originan</td>
@@ -176,8 +175,8 @@ if (isset($_POST['update'])) {
       <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST">
       <tr>
 
-      <th><textarea name="id" class="informe"><?php echo $id;?></textarea></th>
       <th><textarea name="fecha" class="informe"><?php echo $fecha;?></textarea></th>
+      <th><textarea name="tipo" class="informe"><?php echo $tipo;?></textarea></th>
       <th><textarea name="irespon" class="informe"><?php echo $irespon;?></textarea></th>
       <th><textarea name="idesc	" class="informe"><?php echo $idesc	;?></textarea></th>
       <th><textarea name="iorig" class="informe"><?php echo $iorig;?></textarea></th>

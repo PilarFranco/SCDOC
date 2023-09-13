@@ -69,7 +69,7 @@ if ($validar == null || $validar = '') {
                   <p class="sub">ESTADO ACTUAL</p>
                   <input type="text" class="form-control mb-3" name="un" placeholder="1">
                   <input type="text" class="form-control mb-3" name="do" placeholder="2">
-                  <input type="text" class="form-control mb-3" name="tr" placeholder="3">
+                  <input type="text" class="form-control mb-3" name="dr" placeholder="3">
 
 
                 </div>
@@ -96,7 +96,7 @@ if ($validar == null || $validar = '') {
                   <thead>
                     <tr>
                       <td colspan="1"></td>
-                      <td colspan="5">INVENTARIO DE INFRAESTRUCTURA</td>
+                      <td colspan="4">INVENTARIO DE INFRAESTRUCTURA</td>
                       <td colspan="3">FECHA DE ADQUISICIÓN O PUESTA EN SERVICIO</td>
                       <td colspan="3">VIDA ÚTIL (AÑOS)</td>
                       <td colspan="3">ESTADO ACTUAL</td>
@@ -203,10 +203,13 @@ if ($validar == null || $validar = '') {
 
 
       <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-          <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-            <div>
+          <div class="container-fluid px-9">
+            <div class="d-flex align-items-center justify-content-between small">
+              <div class="text-muted"></div>
+              <div>
+              <a>Copyright &copy; Your Website 2023</a>
+              </div>
+              <div>
               <a href="#">Privacy Policy</a>
               &middot;
               <a href="#">Terms &amp; Conditions</a>

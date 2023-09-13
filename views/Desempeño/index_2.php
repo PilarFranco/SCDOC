@@ -42,12 +42,11 @@ if ($validar == null || $validar = '') {
       <main class="container p-4">
   
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
       <!-- Mensaje de inicio de sesion correcto-->
 
     </div>
-    <div class="col-md-8">
-    <div class='table-responsive'>
+    <div class="col-md-7">
     <table class="default" id="tabla">
 
               <h1>DESEMPEÑO</h1>
@@ -150,11 +149,14 @@ if ($validar == null || $validar = '') {
   
 </main>
 
-      <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-          <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-            <div>
+<footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid px-9">
+            <div class="d-flex align-items-center justify-content-between small">
+              <div class="text-muted"></div>
+              <div>
+              <a>Copyright &copy; Your Website 2023</a>
+              </div>
+              <div>
               <a href="#">Privacy Policy</a>
               &middot;
               <a href="#">Terms &amp; Conditions</a>

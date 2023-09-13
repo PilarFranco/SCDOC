@@ -23,7 +23,7 @@ if (isset($_POST['save_task'])) {
   $ag = $_POST['ag'];
   $se = $_POST['se'];
   $oc = $_POST['oc'];
-  $nov = $_POST['no'];
+  $no = $_POST['no'];
   $di = $_POST['di'];
 
 
